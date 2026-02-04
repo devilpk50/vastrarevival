@@ -1,0 +1,104 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+  <div class="container px-4 px-lg-5">
+
+    <!-- Logo (LEFT) -->
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="/assests/logo.png" alt="Vastra Revival" style="height:60px;">
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Content -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+
+      <!-- CENTER: Menu + Search -->
+      <div class="mx-auto d-flex align-items-center gap-4">
+
+        <!-- Menu -->
+        <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+        <a class="nav-link fw-semibold px-3 py-2 rounded-pill nav-pill" href="index.html">Home</a>
+        </li>
+           <li class="nav-item">
+  <a class="nav-link fw-semibold px-3 py-2 rounded-pill nav-pill" href="about.html">About</a>
+</li>
+<li class="nav-item">
+  <a id="sellNavLink" class="nav-link fw-semibold px-3 py-2 rounded-pill nav-pill" href="sell.html" style="display:none;">Sell</a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link fw-semibold px-3 py-2 rounded-pill nav-pill" href="products.html">Shop</a>
+</li>
+
+
+          <!-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle fw-semibold" href="#"
+               data-bs-toggle="dropdown">
+              Shop
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">All Products</a></li>
+              <li><a class="dropdown-item" href="#">New Arrivals</a></li>
+              <li><a class="dropdown-item" href="#">Popular</a></li>
+            </ul>
+          </li>
+        </ul> -->
+
+        <!-- Search -->
+        <form id="navbarSearchForm" class="d-flex" role="search" autocomplete="off">
+          <input
+                 id="navbarSearchInput"
+                 class="form-control form-control-sm me-2"
+                 type="search"
+                 placeholder="Search products"
+                 aria-label="Search"
+                 name="q">
+        </form>
+
+      </div>
+
+      <!-- RIGHT: Sign In + Cart -->
+      <div class="d-flex gap-2 ms-lg-auto align-items-center">
+
+        <!-- Sign In Button (shown when not logged in) -->
+        <a id="signInBtn" href="/login.html" class="btn btn-outline-dark btn-sm">
+          <i class="bi bi-person-circle me-1"></i> Sign In
+        </a>
+
+        <!-- User Dropdown (shown when logged in) -->
+        <div id="userDropdown" class="dropdown" style="display: none;">
+          <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle me-1"></i><span id="userNameDisplay">User</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="/profile.html"><i class="bi bi-person me-2"></i>My Profile</a></li>
+            <li><a class="dropdown-item" href="/my-listings.html"><i class="bi bi-box-seam me-2"></i>My Sell Items</a></li>
+            <li id="adminLink" style="display: none;"><a class="dropdown-item" href="/admin/index.html"><i class="bi bi-shield-lock me-2"></i>Admin Panel</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+          </ul>
+        </div>
+
+        <a id="cartBtn" href="/cart.html" class="btn btn-outline-dark btn-sm" style="display: none;">
+          <i class="bi bi-cart-fill me-1"></i> Cart
+          <span id="cartCount"
+            class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+        </a>
+
+        <!-- Country: Nepal -->
+        <div class="country-badge d-flex align-items-center ms-2">
+  <i class="bi bi-geo-alt-fill me-1 text-danger"></i>
+  <img src="/assests/flag.png" alt="Nepal Flag" class="flag-img me-1">
+  <!-- <span class="fw-semibold">Nepal</span> -->
+</div>
+
+
+      </div>
+
+    </div>
+  </div>
+</nav>

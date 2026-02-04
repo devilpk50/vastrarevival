@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Vastra Revival</title>
+    <link rel="shortcut icon" type="image/jpg" href="assets/logo.png" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/cart.css" rel="stylesheet">
+    <style>
+        .checkout-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .form-section {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+        .form-section h5 {
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #000;
+        }
+        .payment-option {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .payment-option:hover {
+            border-color: #000;
+        }
+        .payment-option.selected {
+            border-color: #000;
+            background-color: #f8f8f8;
+        }
+        .payment-option input[type="radio"] {
+            margin-right: 10px;
+        }
+        .order-summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .order-summary-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div id="header"></div>
+  <div id="social"></div>
+
+    <!-- Header -->
+    <div id="header"></div>
+
+    <div class="container my-5 checkout-container">
+        <h3 class="fw-bold mb-4">Checkout</h3>
+
+        <div class="row">
+            <!-- LEFT COLUMN: Shipping & Payment -->
+            <div class="col-lg-8">
+                <!-- Shipping Address -->
+                <div class="form-section">
+                    <h5><i class="bi bi-geo-alt"></i> Shipping Address</h5>
+                    <form id="checkoutForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">Phone Number *</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="9876543210 or +9779876543210" inputmode="tel" pattern="(\+\d{10,15}|\d{10})" aria-describedby="phoneHelp" required>
+                                <small id="phoneHelp" class="form-text text-muted">Enter 10-digit Nepali number (will be saved as +977...) or include country code (+977...)</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address *</label>
+                            <textarea class="form-control" id="address" rows="3" required></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="city" class="form-label">City *</label>
+                                <input type="text" class="form-control" id="city" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="zip" class="form-label">ZIP Code *</label>
+                                <input type="text" class="form-control" id="zip" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="form-section">
+                    <h5><i class="bi bi-credit-card"></i> Payment Method</h5>
+                    <div class="payment-option selected" onclick="selectPayment('cash_on_delivery')">
+                        <input type="radio" name="paymentMethod" id="cash_on_delivery" value="cash_on_delivery" checked>
+                        <label for="cash_on_delivery" style="cursor: pointer; margin: 0;">
+                            <strong>Cash on Delivery</strong>
+                            <br>
+                            <small class="text-muted">Pay when you receive your order</small>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Order Summary -->
+            <div class="col-lg-4">
+                <div class="summary-box">
+                    <h5>Order Summary</h5>
+                    <div id="orderItems">
+                        <!-- Order items will be loaded here -->
+                    </div>
+                    <hr>
+                    <div class="order-summary-item">
+                        <span>Subtotal</span>
+                        <span id="checkoutSubtotal">₹ 0</span>
+                    </div>
+                    <div class="order-summary-item">
+                        <span>Delivery</span>
+                        <span id="checkoutDelivery">₹ 50</span>
+                    </div>
+                    <hr>
+                    <div class="order-summary-item fw-bold">
+                        <span>Total</span>
+                        <span id="checkoutTotal">₹ 50</span>
+                    </div>
+
+                    <button class="btn btn-dark w-100 mt-3" id="placeOrderBtn" onclick="placeOrder()">
+                        Place Order
+                    </button>
+                    <a href="/cart.html" class="btn btn-outline-secondary w-100 mt-2">
+                        Back to Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/scripts.js"></script>
+    <script src="js/checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+body {
+            background-color: #ffffff;
+        }
+        .login-box {
+            background-color: snow;
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 400px;
+            margin: 80px auto;
+            text-align: center;
+            border: black 1px solid;
+        }
+        .login-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .login-box button {
+            width: 50%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .login-box a,
+        .signup-box a {
+            text-decoration: none;
+        }
+        .signup-box {
+            background-color: snow;
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 400px;
+            margin: 80px auto;
+            text-align: center;
+            border: black 1px solid;
+        }
+        .signup-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .signup-box button {
+            width: 50%;
+            padding: 10px;
+            margin-top: 10px;
+        }   
+        /* Only hide the "login" link inside auth boxes, not in the site header */
+        .login-box a[href="/login.html"],
+        .signup-box a[href="/login.html"] {
+         display: none !important;
+        }

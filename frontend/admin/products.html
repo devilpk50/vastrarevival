@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Products Management - Admin Panel</title>
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <style>
+        .admin-upload-box:hover {
+            transform: translateY(-1px);
+            border-color: rgba(33, 37, 41, 0.45) !important;
+            box-shadow: 0 4px 12px rgba(33, 37, 41, 0.1) !important;
+        }
+        .admin-upload-box:focus {
+            outline: none;
+            border-color: rgba(33, 37, 41, 0.45) !important;
+            box-shadow: 0 4px 12px rgba(33, 37, 41, 0.1) !important;
+        }
+        #adminPreviewImg {
+            max-height: 200px;
+            width: auto;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Vastra Admin</div>
+            </a>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+                <a class="nav-link" href="users.html">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Users</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="products.html">
+                    <i class="fas fa-fw fa-box"></i>
+                    <span>Products</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="orders.html">
+                    <i class="fas fa-fw fa-shopping-cart"></i>
+                    <span>Orders</span></a>
+            </li>
+        </ul>
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form id="adminSearchForm"
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" id="adminSearchInput" class="form-control bg-light border-0 small" placeholder="Search products..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="adminUserNameTopbar">Admin</span>
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="profile.html">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <div class="container-fluid">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-2 text-gray-800">Products Management</h1>
+                        <button class="btn btn-primary" onclick="showAddProductModal()">
+                            <i class="fas fa-plus"></i> Add Product
+                        </button>
+                    </div>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                            <h6 class="m-0 font-weight-bold text-primary">All Products</h6>
+                            <button class="btn btn-primary btn-sm" onclick="refreshProducts()">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="productsTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Name</th>
+                                            <th>Category</th>
+                                            <th>Price</th>
+                                            <th>Stock</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="productsTableBody">
+                                        <tr>
+                                            <td colspan="7" class="text-center">Loading products...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Pagination Container -->
+                            <div id="paginationContainer" class="mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Product Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalTitle">Add Product</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="productForm">
+                        <input type="hidden" id="productId">
+                        <div class="form-group">
+                            <label>Product Name *</label>
+                            <input type="text" class="form-control" id="productName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" id="productDescription" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Price (₹) *</label>
+                            <input type="number" class="form-control" id="productPrice" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select class="form-control" id="productCategory">
+                                <option value="Men">Men</option>
+                                <option value="Women">Women</option>
+                                <option value="Unisex">Unisex</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Stock</label>
+                            <input type="number" class="form-control" id="productStock" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Product Image</label>
+                            <!-- Upload with Preview -->
+                            <div class="admin-upload-box text-center mb-2"
+                                 onclick="triggerAdminUpload()"
+                                 role="button"
+                                 tabindex="0"
+                                 aria-label="Upload image"
+                                 style="position: relative; background: #ffffff; border: 2px dashed rgba(33, 37, 41, 0.28); border-radius: 8px; min-height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; padding: 12px; transition: all 0.2s ease;">
+                                <img id="adminPreviewImg" src="" class="img-fluid d-none" alt="Preview" style="max-height: 200px; width: auto; border-radius: 4px;">
+                                <div id="adminUploadText" class="admin-upload-text">
+                                    <div class="admin-upload-icon" style="width: 40px; height: 40px; border-radius: 8px; display: grid; place-items: center; margin: 0 auto 8px; background: rgba(33, 37, 41, 0.06); border: 1px solid rgba(33, 37, 41, 0.08); color: rgba(33, 37, 41, 0.9); font-size: 1rem;">
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                    <p class="mb-1" style="font-weight: 600; font-size: 0.9rem;">Upload Image</p>
+                                    <small class="text-muted" style="font-size: 0.75rem;">JPG/PNG, max 5MB</small>
+                                </div>
+                                <input type="file" id="adminImageUpload" accept="image/*" hidden>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="saveProduct()">Save Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="#" onclick="logout(); return false;">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="js/admin-auth.js"></script>
+    <script src="js/admin-products.js"></script>
+    <script src="js/admin-search.js"></script>
+    
+    <!-- Admin Common Functions -->
+    <script>
+        // Set admin name in topbar
+        document.addEventListener('DOMContentLoaded', () => {
+            const userName = localStorage.getItem('userName');
+            const adminNameEl = document.getElementById('adminUserNameTopbar');
+            if (userName && adminNameEl) {
+                adminNameEl.textContent = userName;
+            }
+        });
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('userId');
+            localStorage.removeItem('userName');
+            localStorage.removeItem('userRole');
+            window.location.href = '/login.html';
+        }
+    </script>
+</body>
+
+</html>
